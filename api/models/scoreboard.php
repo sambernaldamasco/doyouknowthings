@@ -19,22 +19,26 @@ class Scoreboard {
   static function create($score){
     $query = "INSERT INTO scoreboard (name, score) VALUES ($1, $2)";
     $query_params = array($score->name, $score->score);
+
     pg_query_params($query, $query_params);
 
     return self::all();
   } //end of create function
 
+  static function update($updated_score){
+    $query = "UPDATE scoreboard SET name = $1, score = $2 WHERE id = $3";
+    $query_params = array($updated_score->name, $updated_score->score, $updated_score->id);
 
+    pg_query_params($query, $query_params);
+
+    return self::all();
+  }
 
 
   static function all() {
     $scores = array();
 
-    $results = pg_query(
-      "SELECT *
-      FROM scoreboard
-      ORDER BY scoreboard.score DESC"
-    );
+    $results = pg_query("SELECT * FROM scoreboard ORDER BY scoreboard.score DESC");
 
     $row_object = pg_fetch_object($results);
 

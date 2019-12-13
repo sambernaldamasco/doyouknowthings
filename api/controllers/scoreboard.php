@@ -18,7 +18,11 @@ switch ($_REQUEST['action']){
   break;
 
   case "update":
-    echo "updating all the stuff on id ";
+    $request_object = json_decode(file_get_contents('php://input'));
+    $updated_score = new Score($_REQUEST['id'], $request_object->name, $request_object->score);
+    $scoreboard = Scoreboard::update($updated_score);
+
+    echo json_encode($scoreboard);
   break;
 
   case "delete":
