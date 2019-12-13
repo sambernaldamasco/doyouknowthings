@@ -26,7 +26,9 @@ switch ($_REQUEST['action']){
   break;
 
   case "delete":
-    echo "deleting all the stuff on id ";
+    $scoreboard = Scoreboard::delete($_REQUEST['id']);
+
+    echo json_encode($scoreboard);
   break;
 }
 
