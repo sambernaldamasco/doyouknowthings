@@ -6,7 +6,7 @@ include_once __DIR__ . '/../models/scoreboard.php';
 // ------------ REQUEST ROUTING
 switch ($_REQUEST['action']){
   case "index":
-    echo "it me index";
+    echo json_encode(Scoreboard::all());
   break;
 
   case "post":

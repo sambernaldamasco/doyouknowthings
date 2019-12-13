@@ -2,7 +2,7 @@
 -- BEFORE RUNNING THIS FILE
 -- //////////////////////////////////////////////////////
 
--- create a new database in postgres named trivia(or doyouknowthings or even project4)
+-- create a new database in postgres named trivia(or doyouknowthings or even project4) -- I created named trivia, if you do not name as trivia remember to change the dbname="trivia" inside models/scoreboard.php
 
 -- //////////////////////////////////////////////////////
 -- to run this file use the following command in the terminal(inside the api folder)
