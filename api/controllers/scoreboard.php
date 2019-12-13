@@ -10,7 +10,11 @@ switch ($_REQUEST['action']){
   break;
 
   case "post":
-    echo "it me posting some stuff";
+    $request_object = json_decode(file_get_contents('php://input'));
+    $new_score = new Score(null, $request_object->name, $request_object->score);
+    $scoreboard = Scoreboard::create($new_score);
+
+    echo json_encode($scoreboard);
   break;
 
   case "update":

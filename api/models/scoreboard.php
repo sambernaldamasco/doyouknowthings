@@ -16,6 +16,17 @@ class Score {
 
 
 class Scoreboard {
+  static function create($score){
+    $query = "INSERT INTO scoreboard (name, score) VALUES ($1, $2)";
+    $query_params = array($score->name, $score->score);
+    pg_query_params($query, $query_params);
+
+    return self::all();
+  } //end of create function
+
+
+
+
   static function all() {
     $scores = array();
 
