@@ -1,44 +1,49 @@
 import React from 'react'
+import GameScore from './GameScore.js'
 
 class Question extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      answerValue: 0,
-      currentScore: 0
+      currentScore: 0,
+      answerMsg: null
     }
   }
 
 
   getQuestion = () => {
-      fetch('https://opentdb.com/api.php?amount=1')
-      .then(response => response.json())
-      .then(json => {
-          this.setState({
-              questionInfo:json.results[0],
-              answersArray: [json.results[0].correct_answer, ...json.results[0].incorrect_answers].sort(() => Math.random() - 0.5),
-              correctAnswer: json.results[0].correct_answer,
-          })
-      }).catch(error => console.log(error))
+    this.setState({
+      answerMsg: null
+    })
+
+    fetch('https://opentdb.com/api.php?amount=1')
+    .then(response => response.json())
+    .then(json => {
+      this.setState({
+        questionInfo:json.results[0],
+        answersArray: [json.results[0].correct_answer, ...json.results[0].incorrect_answers].sort(() => Math.random() - 0.5),
+        correctAnswer: json.results[0].correct_answer,
+      })
+    }).catch(error => console.log(error))
   }
 
   answerPoints = () => {
     let value = 0
     switch (this.state.questionInfo.difficulty) {
       case "easy":
-        value = 1
+      value = 1
       break;
 
       case "medium":
-        value = 3
+      value = 3
       break;
 
       case "hard":
-        value = 5
+      value = 5
       break;
 
       default:
-        value = 0
+      value = 0
       break;
     }
 
@@ -50,48 +55,58 @@ class Question extends React.Component{
   checkAnswer = (answer) => {
     if(answer === this.state.correctAnswer){
       this.setState({
-        currentScore: this.state.currentScore + this.answerPoints()
+        currentScore: this.state.currentScore + this.answerPoints(),
+        answerMsg: 'Correct answer!'
       })
     } else {
-      console.log('whomp whomp');
+      this.setState({
+        answerMsg: 'Whomp, whomp. Wrong answer!'
+      })
     }
 
-    this.getQuestion()
+    setTimeout(this.getQuestion, 3000)
   }
 
 
-    render(){
-        return(
-            <div className='question-component'>
-            {console.log(this.state.currentScore)}
+  render(){
+    return(
+      <div className='question-component'>
+        <GameScore currentScore={this.state.currentScore}/>
 
-              <button onClick={()=>{this.getQuestion()}}>Get Random Question</button>
-              {
-                this.state.questionInfo ?
-                <div>
-                {console.log(this.state.questionInfo)}
-                Question: {this.state.questionInfo.question}<br/>
-                Category: {this.state.questionInfo.category}<br/>
-                Difficulty:
-                {this.state.questionInfo.difficulty}<br/>
+        <button onClick={()=>{this.getQuestion()}}>Get Random Question</button>
+        {
+          this.state.questionInfo ?
+          <div>
+            {console.log(this.state.questionInfo)}
+            Question: {this.state.questionInfo.question}<br/>
+            Category: {this.state.questionInfo.category}<br/>
+            Difficulty:
+            {this.state.questionInfo.difficulty}<br/>
 
-                 {console.log(this.state.correctAnswer)}
-                 {this.state.answersArray.map((option, index) => {
-                   return (
-                     <button onClick={()=>this.checkAnswer(option)} key={index}
-                     >
-                       {option}
-                     </button>
-                   )}
-                 )}
+            {console.log(this.state.correctAnswer)}
 
-                </div>
-                : null
-              }
+            {this.state.answersArray.map((option, index) => {
+              return (
+                <button onClick={()=>this.checkAnswer(option)} key={index}
+                >
+                {option}
+                </button>
+              )}
+            )}
 
-            </div>
-        )
-    }
+            {
+              this.state.answerMsg
+              ? <h1>{this.state.answerMsg}</h1>
+              : null
+            }
+
+          </div>
+          : null
+        }
+
+      </div>
+    )
+  }
 }
 
 export default Question
