@@ -4,7 +4,7 @@ class Question extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-        
+
         }
     }
 
@@ -13,10 +13,15 @@ class Question extends React.Component{
         .then(response => response.json())
         .then(json => {
             this.setState({
-                questionInfo:json
+                questionInfo:json.results[0],
+                answersArray: [json.results[0].correct_answer, ...json.results[0].incorrect_answers]
             })
         }).catch(error => console.log(error))
     }
+    // getAnswersArray = () => {
+    //   const answersArray = []
+    //   answersArray.push(this.state.questionInfo.correct_answer)
+    // }
 
     render(){
         return(
@@ -26,11 +31,12 @@ class Question extends React.Component{
                 {
                  (this.state.questionInfo) ?
                  <div>
-                 Question: {this.state.questionInfo.results[0].question}<br/>
-                 Category: {this.state.questionInfo.results[0].category}<br/>
+                 Question: {this.state.questionInfo.question}<br/>
+                 Category: {this.state.questionInfo.category}<br/>
                  Difficulty:
-                 {this.state.questionInfo.results[0].difficulty}<br/>
-
+                 {this.state.questionInfo.difficulty}<br/>
+                 {console.log(this.state.questionInfo)}
+                 {console.log(this.state.answersArray)}
 
                  </div>
                  : null
