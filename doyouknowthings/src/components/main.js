@@ -5,23 +5,35 @@ import Scoreboard from './scoreboard.js'
 
 class Main extends React.Component{
   constructor(props){
-      super(props)
-      this.state = {
-      }
+    super(props)
+    this.state = {
+      playerName: null
+    }
   }
 
+  getPlayerName = (formData) => {
+    this.setState({
+      playerName: formData
+    })
+  }
 
-    render(){
-        return(
-            <div className='main-component'>
-                this is the main component
-                <Form />
+  render(){
+    return(
+      <div className='main-component'>
+        {
+          this.state.playerName
+          ? <> <h1>Player - {this.state.playerName}</h1>
+          <Question playerName={this.state.playerName}/>
+          </>
 
-                <Question />
-                <Scoreboard />
-            </div>
-        )
-    }
+          :
+          <Form getPlayerName={this.getPlayerName}/>
+        }
+
+        <Scoreboard />
+      </div>
+    )
+  }
 }
 
 export default Main

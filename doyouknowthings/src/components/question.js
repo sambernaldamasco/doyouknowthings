@@ -77,7 +77,6 @@ class Question extends React.Component{
         {
           this.state.questionInfo ?
           <div>
-            {console.log(this.state.questionInfo)}
             Question: {this.state.questionInfo.question}<br/>
             Category: {this.state.questionInfo.category}<br/>
             Difficulty:
