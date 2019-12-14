@@ -7,7 +7,6 @@ class Main extends React.Component{
   constructor(props){
       super(props)
       this.state = {
-
       }
   }
 
@@ -18,7 +17,8 @@ class Main extends React.Component{
           this.setState({
               questionInfo:json.results[0],
               answersArray: [json.results[0].correct_answer, ...json.results[0].incorrect_answers].sort(() => Math.random() - 0.5),
-              correctAnswer: json.results[0].correct_answer
+              correctAnswer: json.results[0].correct_answer,
+              answerValue: 0
           })
       }).catch(error => console.log(error))
   }
@@ -36,6 +36,7 @@ class Main extends React.Component{
                     questionInfo={this.state.questionInfo}
                     answersArray={this.state.answersArray}
                     correctAnswer={this.state.correctAnswer}
+                    answerValue={this.state.answerValue}
                   />
                   : null
                 }

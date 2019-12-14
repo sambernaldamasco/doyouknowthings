@@ -1,20 +1,56 @@
 import React from 'react'
 
 class Question extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      answerValue: 0,
+      currentScore: 0
+    }
+  }
+
+  answerPoints = () => {
+    let value = 0
+    switch (this.props.questionInfo.difficulty) {
+      case "easy":
+        value = 1
+      break;
+
+      case "medium":
+        value = 3
+      break;
+
+      case "hard":
+        value = 5
+      break;
+
+      default:
+        value = 0
+      break;
+    }
+
+    return value
+
+  }
+
 
   checkAnswer = (answer) => {
-    answer === this.props.correctAnswer
-    ? console.log('thats right')
-    : console.log('whomp whomp')
+    if(answer === this.props.correctAnswer){
+      this.setState({
+        currentScore: this.state.currentScore + this.answerPoints()
+      })
+    } else {
+      console.log('whomp whomp');
+    }
   }
+
 
     render(){
         return(
             <div className='question-component'>
-                this is the question component <br />
-
+            {console.log(this.state.currentScore)}
                  <div>
-          
+                 {console.log(this.props.questionInfo)}
                  Question: {this.props.questionInfo.question}<br/>
                  Category: {this.props.questionInfo.category}<br/>
                  Difficulty:
