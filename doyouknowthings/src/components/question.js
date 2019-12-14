@@ -18,10 +18,13 @@ class Question extends React.Component{
             })
         }).catch(error => console.log(error))
     }
-    // getAnswersArray = () => {
-    //   const answersArray = []
-    //   answersArray.push(this.state.questionInfo.correct_answer)
-    // }
+
+    shuffleAnswers = (arr) => {
+      const modifiedArray = arr.sort(()=> Math.random() -0.5)
+      this.setState({
+        answersArray: modifiedArray
+      })
+    }
 
     render(){
         return(
@@ -36,8 +39,6 @@ class Question extends React.Component{
                  Difficulty:
                  {this.state.questionInfo.difficulty}<br/>
                  {console.log(this.state.questionInfo)}
-                 {console.log(this.state.answersArray)}
-
                  </div>
                  : null
                 }
