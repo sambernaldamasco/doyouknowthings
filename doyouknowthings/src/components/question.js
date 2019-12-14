@@ -7,12 +7,14 @@ class Question extends React.Component{
     ? console.log('thats right')
     : console.log('whomp whomp')
   }
+
     render(){
         return(
             <div className='question-component'>
                 this is the question component <br />
 
                  <div>
+          
                  Question: {this.props.questionInfo.question}<br/>
                  Category: {this.props.questionInfo.category}<br/>
                  Difficulty:
@@ -29,6 +31,7 @@ class Question extends React.Component{
                       </button>
                     )}
                   )}
+
                  </div>
             </div>
         )
