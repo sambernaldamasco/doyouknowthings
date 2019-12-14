@@ -1,40 +1,38 @@
 import React from 'react'
 
 class Question extends React.Component{
-    constructor(props){
-        super(props)
-        this.state = {
-        
-        }
-    }
 
-    getQuestion = () => {
-        fetch('https://opentdb.com/api.php?amount=1')
-        .then(response => response.json())
-        .then(json => {
-            this.setState({
-                questionInfo:json
-            })
-        }).catch(error => console.log(error))
-    }
+  checkAnswer = (answer) => {
+    answer === this.props.correctAnswer
+    ? console.log('thats right')
+    : console.log('whomp whomp')
+  }
 
     render(){
         return(
             <div className='question-component'>
                 this is the question component <br />
-                <button onClick={()=>{this.getQuestion()}}>Get Random Question</button>
-                {
-                 (this.state.questionInfo) ?
-                 <div>
-                 Question: {this.state.questionInfo.results[0].question}<br/>
-                 Category: {this.state.questionInfo.results[0].category}<br/>
-                 Difficulty:
-                 {this.state.questionInfo.results[0].difficulty}<br/>
 
+                 <div>
+          
+                 Question: {this.props.questionInfo.question}<br/>
+                 Category: {this.props.questionInfo.category}<br/>
+                 Difficulty:
+                 {this.props.questionInfo.difficulty}<br/>
+                 </div>
+
+                 <div>
+                  {console.log(this.props.correctAnswer)}
+                  {this.props.answersArray.map((option, index) => {
+                    return (
+                      <button onClick={()=>this.checkAnswer(option)} key={index}
+                      >
+                        {option}
+                      </button>
+                    )}
+                  )}
 
                  </div>
-                 : null
-                }
             </div>
         )
     }
