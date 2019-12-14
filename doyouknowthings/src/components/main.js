@@ -10,18 +10,6 @@ class Main extends React.Component{
       }
   }
 
-  getQuestion = () => {
-      fetch('https://opentdb.com/api.php?amount=1')
-      .then(response => response.json())
-      .then(json => {
-          this.setState({
-              questionInfo:json.results[0],
-              answersArray: [json.results[0].correct_answer, ...json.results[0].incorrect_answers].sort(() => Math.random() - 0.5),
-              correctAnswer: json.results[0].correct_answer,
-              answerValue: 0
-          })
-      }).catch(error => console.log(error))
-  }
 
     render(){
         return(
@@ -29,17 +17,7 @@ class Main extends React.Component{
                 this is the main component
                 <Form />
 
-                <button onClick={()=>{this.getQuestion()}}>Get Random Question</button>
-                {
-                  this.state.questionInfo ?
-                  <Question
-                    questionInfo={this.state.questionInfo}
-                    answersArray={this.state.answersArray}
-                    correctAnswer={this.state.correctAnswer}
-                    answerValue={this.state.answerValue}
-                  />
-                  : null
-                }
+                <Question />
                 <Scoreboard />
             </div>
         )
