@@ -13,9 +13,9 @@ code {
 }
 /* GLOBAL =============== */
 .container {
-    outline: 1px solid gold;
+    /* outline: 1px solid gold; */
     max-width: 800px;
-    margin: 10px;
+    margin: auto;
     padding: 10px;
 }
 
@@ -25,7 +25,6 @@ code {
 
 /* HEADER =============== */
 .header-component {
-    outline: 1px solid gold;
     text-align: center;
 }
 
@@ -49,6 +48,20 @@ nav > div:hover {
 }
 
 /* SCOREBOARD =============== */
+.scoreboard-component {
+    position: absolute;
+    top: 130px;
+    left: 0px;
+    width: 100%;
+}
+
+.scoreboard {
+    max-width: 800px;
+    margin: auto;
+    padding: 10px;
+    background: white;
+}
+
 table {
     width: 400px;
     margin: auto;
