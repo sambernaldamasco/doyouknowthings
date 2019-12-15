@@ -80,12 +80,6 @@ class Question extends React.Component{
     return(
       <div className='question-component'>
         {
-            (this.state.answerMsg) ?
-            <h1>WORKING</h1>
-            : null
-        }
-
-        {
           this.state.gameOver
           ? <>
           <h1>You've answered {this.state.correctAnswerCount} questions correctly and got {this.state.currentScore} points!</h1>
