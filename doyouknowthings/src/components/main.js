@@ -46,12 +46,21 @@ class Main extends React.Component{
       this.setState({
         scoreboard: jsonData
       })
-    })
+    }).catch(error=>console.log(error))
   }
 
-  // handleUpdate = (updateData) => {
-  //
-  // }
+  handleUpdate = (updateData) => {
+    fetch(`${baseURL}/scoreboard/${updateData.id}`, {
+      body: JSON.stringify(updateData),
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      this.getScoreboard()
+    }).catch(error=>console.log(error))
+  }
 
 
   startNewGame = (formData) => {
@@ -77,6 +86,7 @@ class Main extends React.Component{
               handleCreate={this.handleCreate}
               handleView={this.props.handleView}
               scoreboard={this.state.scoreboard}
+              handleUpdate={this.handleUpdate}
             />
             </>
             :

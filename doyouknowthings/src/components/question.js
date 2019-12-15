@@ -81,17 +81,25 @@ class Question extends React.Component{
       name: this.props.playerName,
       score: this.state.currentScore
     }
-    console.log(gameData);
+
     let scoreCheck = this.props.scoreboard.filter(player => player.name === gameData.name)
-    console.log(scoreCheck);
+    console.log(scoreCheck[0]);
+    console.log(gameData);
+
     if (scoreCheck[0]) {
       console.log('player exists in db');
+      
+      gameData.id = scoreCheck[0].id
+      this.props.handleUpdate(gameData)
+      this.props.handleView('scoreboard')
+
     } else {
       console.log('new player');
+      this.props.handleCreate(gameData)
+      this.props.handleView('scoreboard')
+      this.props.startNewGame(null)
     }
-    // this.props.handleCreate(gameData)
-    // this.props.handleView('scoreboard')
-    // this.props.startNewGame(null)
+
   }
 
   render(){
