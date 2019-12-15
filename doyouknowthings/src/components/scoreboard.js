@@ -34,6 +34,7 @@ class Scoreboard extends React.Component{
     render(){
         return(
             <div className='scoreboard-component'>
+                <div className='scoreboard'>
                 <table>
                 <thead>
                     <tr>
@@ -46,7 +47,7 @@ class Scoreboard extends React.Component{
                 </thead>
                 <tbody>
                 {
-                    // eventually this if statement should be changed to if the view === 'scoreboard'
+                    // we don't actually need this ternary operator -- just the map. The scoreboard always exists even if empty
                     (this.state.scoreboard) ?
                     this.state.scoreboard.map((score) => {
                         return(
@@ -64,9 +65,7 @@ class Scoreboard extends React.Component{
                 }
                 </tbody>
                 </table>
-
-
-
+                </div>
             </div>
         )
     }
