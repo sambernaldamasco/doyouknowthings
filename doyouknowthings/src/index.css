@@ -71,3 +71,9 @@ table {
 tr {
     height: 50px;
 }
+
+/* FORM =============== */
+.start-form-component {
+    text-align: center;
+    margin-top: 10px;
+}
