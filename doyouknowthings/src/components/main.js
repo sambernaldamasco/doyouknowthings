@@ -18,12 +18,14 @@ class Main extends React.Component{
   }
 
   render(){
+      // console.log(this.state);
     return(
       <div className='main-component'>
           {
             this.state.playerName
             ? <> <h1>Player - {this.state.playerName}</h1>
-            <Question playerName={this.state.playerName} startNewGame={this.startNewGame}/>
+            <Question playerName={this.state.playerName}startNewGame={this.startNewGame}
+            />
             </>
             :
             <Form startNewGame={this.startNewGame}/>
