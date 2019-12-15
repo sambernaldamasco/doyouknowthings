@@ -11,6 +11,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* GLOBAL =============== */
+.container {
+    outline: 1px solid gold;
+    max-width: 800px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.display-none {
+    display: none;
+}
+
+/* HEADER =============== */
+.header-component {
+    outline: 1px solid gold;
+    text-align: center;
+}
+
+.header-component > h1 {
+    padding-top: 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+nav > div {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+nav > div:hover {
+    cursor: pointer;
+}
 
 /* SCOREBOARD =============== */
 table {
