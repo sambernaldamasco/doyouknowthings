@@ -76,6 +76,15 @@ class Question extends React.Component{
     })
   }
 
+  addToScoreboard = () => {
+    let gameData = {
+      name: this.props.playerName,
+      score: this.state.currentScore
+    }
+    console.log(gameData);
+    this.props.handleCreate(gameData)
+  }
+
   render(){
     return(
       <div className='question-component'>
@@ -84,6 +93,7 @@ class Question extends React.Component{
           ? <>
           <h1>You've answered {this.state.correctAnswerCount} questions correctly and got {this.state.currentScore} points!</h1>
           <button onClick={()=>this.props.startNewGame(null)}>start new game</button>
+          <button onClick={this.addToScoreboard}>add to the scoreboard</button>
           </>
 
           :<>

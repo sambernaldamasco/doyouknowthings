@@ -1,13 +1,6 @@
 // dependencies ===============
 import React from 'react'
 
-// database connection ===============
-let baseURL = '';
-if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:8888'
-} else {
-  console.log('this is for heroku');
-}
 
 class Scoreboard extends React.Component{
     constructor(props){
@@ -17,19 +10,7 @@ class Scoreboard extends React.Component{
         }
     }
 
-    componentDidMount(){
-        this.getScoreboard()
-    }
-
-    getScoreboard = () => {
-        fetch(`${baseURL}/scoreboard`)
-        .then(response => response.json())
-        .then(json => {
-            this.setState({
-                scoreboard: json
-            })
-        }).catch(error => console.log(error))
-    }
+//had to move the getScoreboard and db connection to main so I can pass the scoreboard also to question.js to validate if the name is there or nah
 
     render(){
         return(
@@ -48,8 +29,8 @@ class Scoreboard extends React.Component{
                 <tbody>
                 {
                     // we don't actually need this ternary operator -- just the map. The scoreboard always exists even if empty
-                    (this.state.scoreboard) ?
-                    this.state.scoreboard.map((score) => {
+                    (this.props.scoreboard) ?
+                    this.props.scoreboard.map((score) => {
                         return(
                         <tr key={score.id}>
                         <td className='scoreboard-name'>
