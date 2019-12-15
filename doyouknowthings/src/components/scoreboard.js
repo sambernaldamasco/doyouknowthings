@@ -19,7 +19,6 @@ class Scoreboard extends React.Component{
 // had to move the getScoreboard and db connection to main so I can pass the scoreboard also to question.js to validate if the name is there or nah
 
     render(){
-        console.log(this.state);
         return(
             <div className='scoreboard-component'>
                 <div className='scoreboard'>
@@ -27,6 +26,7 @@ class Scoreboard extends React.Component{
                 SCOREBOARD
                 </div>
                 <table>
+                <tbody>
                 {
                     (this.props.scoreboard) ?
                     this.props.scoreboard.map((score) => {
@@ -41,7 +41,7 @@ class Scoreboard extends React.Component{
                         {
                             (this.state.admin === true) ?
                             <td>
-                            <button>DELETE</button>
+                            <button onClick={()=>this.props.handleDelete(score.id)}>DELETE</button>
                             </td>
                             : null
                         }
@@ -51,6 +51,7 @@ class Scoreboard extends React.Component{
                     })
                     : null
                 }
+                </tbody>
                 </table>
                 {
                     (this.state.admin === false) ?

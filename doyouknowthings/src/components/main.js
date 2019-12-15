@@ -86,6 +86,18 @@ class Main extends React.Component{
     }).catch(error=>console.log(error))
   }
 
+  handleDelete = (id) => {
+      fetch(`${baseURL}/scoreboard/${id}`, {
+          method: 'DELETE',
+          headers: {
+              'Accept' : 'application/json, text/plain, */*',
+              'Content-Type': 'application/json'
+          }
+      }).then(response => {
+          console.log('deleted!');
+      }).catch(error => console.log(error))
+  }
+
 // startNewGame ==============
 // summary: validates if the name inserted in the form already exisits in the scoreboard.
 // If it does, it changes the state of the object playerInfo to have the score and id from the player instance inside the database.
@@ -138,7 +150,9 @@ class Main extends React.Component{
           }
           {
               (this.props.view === 'scoreboard') ?
-              <Scoreboard scoreboard={this.state.scoreboard} />
+              <Scoreboard
+                scoreboard={this.state.scoreboard}
+                handleDelete={this.handleDelete} />
               :
               <div className='display-none'>
               <Scoreboard />
