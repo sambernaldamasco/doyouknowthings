@@ -22,7 +22,7 @@ class Form extends React.Component{
     return(
       <div className='start-form-component'>
         <form onSubmit={this.handleSubmit}>
-        <label htmlFor="name"> name </label>
+        <label htmlFor="name"> Name: </label>
         <input type="text" id="name" value={this.state.name} onChange={this.handleChange}/>
         <input type="submit" value="start game!"/>
         </form>

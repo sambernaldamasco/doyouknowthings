@@ -23,6 +23,23 @@ code {
     display: none;
 }
 
+button {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 5px;
+    min-width: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+input {
+    border: 1px solid black;
+    border-radius: 3px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 5px;
+}
+
 /* HEADER =============== */
 .header-component {
     text-align: center;
@@ -60,6 +77,7 @@ nav > div:hover {
     margin: auto;
     padding: 10px;
     background: white;
+    height: 500px;
 }
 
 table {
@@ -76,4 +94,49 @@ tr {
 .start-form-component {
     text-align: center;
     margin-top: 10px;
+}
+
+/* MAIN =============== */
+.player-name {
+    text-align: center;
+}
+
+/* QUESTION ============ */
+.score {
+    text-align: center;
+}
+
+.get-question {
+    text-align: center;
+}
+
+.data {
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.question-div, .category-div, .difficulty-div {
+    height: 50px;
+    margin-top: 20px;
+    line-height: 1.5;
+}
+
+.difficulty-div {
+    text-transform: capitalize;
+}
+
+.key {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.answers {
+    text-align: center;
+    line-height: 2;
+}
+
+.end-game {
+    text-align: right;
 }

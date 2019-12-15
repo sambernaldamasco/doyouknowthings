@@ -87,38 +87,52 @@ class Question extends React.Component{
           </>
 
           :<>
-          <h1>SCORE {this.state.currentScore}</h1>
-
+          <h1 className='score'>Score:  {this.state.currentScore}</h1>
+          <div className='get-question'>
           <button onClick={()=>{this.getQuestion()}}>Get Random Question</button>
+          </div>
           </>
         }
 
         {
           this.state.questionInfo ?
-          <div>
-            Question: {this.state.questionInfo.question}<br/>
-            Category: {this.state.questionInfo.category}<br/>
-            Difficulty:
-            {this.state.questionInfo.difficulty}<br/>
+          <div className='data'>
+            <div className='question-div'>
+            <span className='key'>Question:</span> {this.state.questionInfo.question}
+            </div>
+            <div className='category-div'>
+            <span className='key'>Category:</span> {this.state.questionInfo.category}
+            </div>
+            <div className='difficulty-div'>
+            <span className='key'>Difficulty: </span>
+            {this.state.questionInfo.difficulty}
+            </div>
 
             {console.log(this.state.correctAnswer)}
 
+            <div className='answers'>
+            <span className='key'>Answers</span>
+            <br/>
             {this.state.answersArray.map((option, index) => {
               return (
-                <button onClick={()=>this.checkAnswer(option)} key={index}
-                >
-                {option}
-                </button>
+
+                    <button onClick={()=>this.checkAnswer(option)} key={index}
+                    >
+                    {option}
+                    </button>
+
               )}
             )}
+            </div>
 
             {
               this.state.answerMsg
               ? <h1>{this.state.answerMsg}</h1>
               : null
             }
-          <button onClick={this.endGame}>end game</button>
-
+            <div className='end-game'>
+                <button onClick={this.endGame}>end game</button>
+            </div>
           </div>
           : null
         }

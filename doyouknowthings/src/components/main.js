@@ -23,7 +23,7 @@ class Main extends React.Component{
       <div className='main-component'>
           {
             this.state.playerName
-            ? <> <h1>Player - {this.state.playerName}</h1>
+            ? <> <h1 className='player-name'>Player: {this.state.playerName}</h1>
             <Question playerName={this.state.playerName}startNewGame={this.startNewGame}
             />
             </>
