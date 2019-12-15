@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* SCOREBOARD =============== */
+table {
+    width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+tr {
+    height: 50px;
+}
