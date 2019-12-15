@@ -83,6 +83,8 @@ class Question extends React.Component{
     }
     console.log(gameData);
     this.props.handleCreate(gameData)
+    this.props.handleView('scoreboard')
+    this.props.startNewGame(null)
   }
 
   render(){
