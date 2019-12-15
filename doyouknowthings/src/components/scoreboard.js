@@ -6,29 +6,28 @@ class Scoreboard extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-
+            admin:false
         }
     }
 
-//had to move the getScoreboard and db connection to main so I can pass the scoreboard also to question.js to validate if the name is there or nah
+    toggleAdminMode = () => {
+        this.setState({
+            admin: !this.state.admin
+        })
+    }
+
+// had to move the getScoreboard and db connection to main so I can pass the scoreboard also to question.js to validate if the name is there or nah
 
     render(){
         return(
             <div className='scoreboard-component'>
                 <div className='scoreboard'>
+                <div className='table-head'>
+                SCOREBOARD
+                </div>
                 <table>
-                <thead>
-                    <tr>
-                    <th colSpan="2">SCOREBOARD</th>
-                    </tr>
-                    <tr>
-                        <th>NAME</th>
-                        <th>SCORE</th>
-                    </tr>
-                </thead>
                 <tbody>
                 {
-                    // we don't actually need this ternary operator -- just the map. The scoreboard always exists even if empty
                     (this.props.scoreboard) ?
                     this.props.scoreboard.map((score) => {
                         return(
@@ -39,6 +38,14 @@ class Scoreboard extends React.Component{
                         <td className='scoreboard-score'>
                         {score.score}
                         </td>
+                        {
+                            (this.state.admin === true) ?
+                            <td>
+                            <button onClick={()=>this.props.handleDelete(score.id)}>DELETE</button>
+                            </td>
+                            : null
+                        }
+
                         </tr>
                     )
                     })
@@ -46,6 +53,14 @@ class Scoreboard extends React.Component{
                 }
                 </tbody>
                 </table>
+                {
+                    (this.state.admin === false) ?
+                        <button onClick={()=>this.toggleAdminMode()}>Admin Mode</button>
+                    : <button onClick={()=>this.toggleAdminMode()}>Player Mode</button>
+                }
+
+
+
                 </div>
             </div>
         )

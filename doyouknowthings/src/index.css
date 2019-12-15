@@ -70,6 +70,7 @@ nav > div:hover {
     top: 130px;
     left: 0px;
     width: 100%;
+    text-align: center;
 }
 
 .scoreboard {
@@ -88,6 +89,19 @@ table {
 
 tr {
     height: 50px;
+    text-align: center;
+}
+
+td {
+    width: 50px;
+}
+
+.table-head{
+    width: 400px;
+    margin: auto;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 2;
 }
 
 /* FORM =============== */
