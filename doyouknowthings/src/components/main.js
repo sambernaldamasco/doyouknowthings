@@ -1,10 +1,17 @@
+//===========================================
+// DEPENDENCIES
+//===========================================
+
+// packages ======================
 import React from 'react'
+
+// components =====================
 import Form from './form.js'
 import Question from './question.js'
 import Scoreboard from './scoreboard.js'
 
 
-// database connection ===============
+// database connection =============
 let baseURL = '';
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:8888'
@@ -13,6 +20,9 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 
+//===========================================
+// COMPONENT CLASS
+//===========================================
 class Main extends React.Component{
   constructor(props){
     super(props)
@@ -24,6 +34,12 @@ class Main extends React.Component{
     }
   }
 
+//===========================================
+// METHODS
+//===========================================
+// getScoreboard ==============
+// summary: GET call to the server to retrieve the scoreboard stored in the database
+// it changes the state of this component by adding the object scoreboard
   getScoreboard = () => {
       fetch(`${baseURL}/scoreboard`)
       .then(response => response.json())
@@ -34,7 +50,9 @@ class Main extends React.Component{
       }).catch(error => console.log(error))
   }
 
-
+// handleCreate ==============
+// summary: POST call to the server to add new player and score to the scoreboard stored in the database
+// it changes the state of this component by adding the object scoreboard with the new player
   handleCreate = (createData) => {
     fetch(`${baseURL}/scoreboard`, {
       body: JSON.stringify(createData),
@@ -52,6 +70,9 @@ class Main extends React.Component{
     }).catch(error=>console.log(error))
   }
 
+// handleUpdate ==============
+// summary: POST call to the server to update the score of a player if it already exists in the database(startNewGame validates it)
+// it changes the state of this component by adding the object scoreboard with the updated data by calling the API again
   handleUpdate = (updateData) => {
     fetch(`${baseURL}/scoreboard/${updateData.id}`, {
       body: JSON.stringify(updateData),
@@ -65,7 +86,10 @@ class Main extends React.Component{
     }).catch(error=>console.log(error))
   }
 
-
+// startNewGame ==============
+// summary: validates if the name inserted in the form already exisits in the scoreboard.
+// If it does, it changes the state of the object playerInfo to have the score and id from the player instance inside the database.
+// if it doesn't, changes the object playerInfo to contains only the name from the form input
   startNewGame = (formData) => {
     let playerCheck = this.state.scoreboard.filter(player => player.name === formData)
 
@@ -83,12 +107,18 @@ class Main extends React.Component{
 
   }
 
+// componentDidMount ==============
+// summary: self explanatory -- calls the getScoreboard function as soon as the component is mounted into the page
   componentDidMount(){
     this.getScoreboard()
   }
 
+
+// render ==============
+// summary: has two conditionals to display elements according to results.
+// first conditional checks if there's information inside playerInfo.name -- if doesn't, displays a form to add that info
+// second conditional is for displayview of the scoreboard
   render(){
-      // console.log(this.state);
     return(
       <div className='main-component'>
           {
