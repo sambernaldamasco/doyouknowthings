@@ -23,17 +23,10 @@ class Scoreboard extends React.Component{
         return(
             <div className='scoreboard-component'>
                 <div className='scoreboard'>
+                <div className='table-head'>
+                SCOREBOARD
+                </div>
                 <table>
-                <thead>
-                    <tr>
-                    <th colSpan="2">SCOREBOARD</th>
-                    </tr>
-                    <tr>
-                        <th>NAME</th>
-                        <th>SCORE</th>
-                    </tr>
-                </thead>
-                <tbody>
                 {
                     (this.props.scoreboard) ?
                     this.props.scoreboard.map((score) => {
@@ -45,12 +38,19 @@ class Scoreboard extends React.Component{
                         <td className='scoreboard-score'>
                         {score.score}
                         </td>
+                        {
+                            (this.state.admin === true) ?
+                            <td>
+                            <button>DELETE</button>
+                            </td>
+                            : null
+                        }
+
                         </tr>
                     )
                     })
                     : null
                 }
-                </tbody>
                 </table>
                 {
                     (this.state.admin === false) ?

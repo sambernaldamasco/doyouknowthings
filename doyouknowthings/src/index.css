@@ -89,6 +89,19 @@ table {
 
 tr {
     height: 50px;
+    text-align: center;
+}
+
+td {
+    width: 50px;
+}
+
+.table-head{
+    width: 400px;
+    margin: auto;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 2;
 }
 
 /* FORM =============== */
