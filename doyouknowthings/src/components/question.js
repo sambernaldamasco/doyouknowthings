@@ -23,7 +23,7 @@ class Question extends React.Component{
       this.setState({
         questionInfo:json.results[0],
         answersArray: [json.results[0].correct_answer, ...json.results[0].incorrect_answers].sort(() => Math.random() - 0.5),
-        correctAnswer: json.results[0].correct_answer,
+        correctAnswer: json.results[0].correct_answer
       })
     }).catch(error => console.log(error))
   }
@@ -80,10 +80,16 @@ class Question extends React.Component{
     return(
       <div className='question-component'>
         {
+            (this.state.answerMsg) ?
+            <h1>WORKING</h1>
+            : null
+        }
+
+        {
           this.state.gameOver
           ? <>
           <h1>You've answered {this.state.correctAnswerCount} questions correctly and got {this.state.currentScore} points!</h1>
-          <button onClick={()=>this.props.startNewGame(null)}>start new game?</button>
+          <button onClick={()=>this.props.startNewGame(null)}>start new game</button>
           </>
 
           :<>
