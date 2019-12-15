@@ -49,6 +49,10 @@ class Main extends React.Component{
     })
   }
 
+  // handleUpdate = (updateData) => {
+  //
+  // }
+
 
   startNewGame = (formData) => {
     this.setState({
@@ -71,8 +75,8 @@ class Main extends React.Component{
               playerName={this.state.playerName}
               startNewGame={this.startNewGame}
               handleCreate={this.handleCreate}
-              view={this.props.view}
               handleView={this.props.handleView}
+              scoreboard={this.state.scoreboard}
             />
             </>
             :
