@@ -17,7 +17,10 @@ class Main extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      playerName: null,
+      playerInfo: {
+        name: null,
+        score: 0
+      }
     }
   }
 
@@ -64,9 +67,20 @@ class Main extends React.Component{
 
 
   startNewGame = (formData) => {
-    this.setState({
-      playerName: formData
-    })
+    let playerCheck = this.state.scoreboard.filter(player => player.name === formData)
+
+    if (playerCheck[0]){
+      this.setState({
+        playerInfo: playerCheck[0]
+      })
+    } else {
+      this.setState({
+        playerInfo: {
+          name: formData
+        }
+      })
+    }
+
   }
 
   componentDidMount(){
@@ -78,10 +92,10 @@ class Main extends React.Component{
     return(
       <div className='main-component'>
           {
-            this.state.playerName
-            ? <> <h1 className='player-name'>Player: {this.state.playerName}</h1>
+            this.state.playerInfo.name
+            ? <> <h1 className='player-name'>Player: {this.state.playerInfo.name}</h1>
             <Question
-              playerName={this.state.playerName}
+              playerInfo={this.state.playerInfo}
               startNewGame={this.startNewGame}
               handleCreate={this.handleCreate}
               handleView={this.props.handleView}

@@ -78,24 +78,21 @@ class Question extends React.Component{
 
   addToScoreboard = () => {
     let gameData = {
-      name: this.props.playerName,
+      id: this.props.playerInfo.id,
+      name: this.props.playerInfo.name,
       score: this.state.currentScore
     }
 
-    let scoreCheck = this.props.scoreboard.filter(player => player.name === gameData.name)
-    console.log(scoreCheck[0]);
-    console.log(gameData);
-
-    if (scoreCheck[0]) {
+    if (this.props.playerInfo.id) {
       console.log('player exists in db');
-      
-      gameData.id = scoreCheck[0].id
+
       this.props.handleUpdate(gameData)
       this.props.handleView('scoreboard')
 
     } else {
       console.log('new player');
       this.props.handleCreate(gameData)
+
       this.props.handleView('scoreboard')
       this.props.startNewGame(null)
     }
@@ -105,6 +102,8 @@ class Question extends React.Component{
   render(){
     return(
       <div className='question-component'>
+      {console.log(this.props.playerInfo)}
+
         {
           this.state.gameOver
           ? <>
