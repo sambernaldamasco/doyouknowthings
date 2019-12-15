@@ -19,6 +19,10 @@ code {
     padding: 10px;
 }
 
+.display-none {
+    display: none;
+}
+
 /* HEADER =============== */
 .header-component {
     outline: 1px solid gold;
