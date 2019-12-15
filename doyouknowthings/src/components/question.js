@@ -66,7 +66,9 @@ class Question extends React.Component{
       })
     }
 
-    setTimeout(this.getQuestion, 2000)
+    if (!this.state.gameOver) {
+      setTimeout(this.getQuestion, 1000)
+    }
   }
 
   endGame = () => {
@@ -103,23 +105,6 @@ class Question extends React.Component{
     return(
       <div className='question-component'>
       {console.log(this.props.playerInfo)}
-
-        {
-          this.state.gameOver
-          ? <>
-          <h1>You've answered {this.state.correctAnswerCount} questions correctly and got {this.state.currentScore} points!</h1>
-          <button onClick={()=>this.props.startNewGame(null)}>start new game</button>
-          <button onClick={this.addToScoreboard}>add to the scoreboard</button>
-          </>
-
-          :<>
-          <h1 className='score'>Score:  {this.state.currentScore}</h1>
-          <div className='get-question'>
-          <button onClick={()=>{this.getQuestion()}}>Get Random Question</button>
-          </div>
-          </>
-        }
-
         {
           this.state.questionInfo ?
           <div className='data'>
@@ -160,11 +145,36 @@ class Question extends React.Component{
                 <button onClick={this.endGame}>end game</button>
             </div>
           </div>
-          : null
+          : <>
+          {
+            this.state.gameOver
+            ? <>
+            {
+              (!this.props.playerInfo.id) || (this.state.currentScore > this.props.playerInfo.score)
+
+              ?<>
+              <h1>You've answered {this.state.correctAnswerCount} questions correctly and got {this.state.currentScore} points!</h1>
+              <button onClick={this.addToScoreboard}>add to the scoreboard</button>
+              </>
+              :<>
+              <h1>You've answered {this.state.correctAnswerCount} questions correctly and got {this.state.currentScore} points!</h1>
+              <h1>...but not quite better than your last time here</h1>
+              </>
+            }
+            <button onClick={()=>this.props.startNewGame(null)}>start new game</button>
+            </>
+
+            :<>
+            <h1 className='score'>Score:  {this.state.currentScore}</h1>
+
+            <div className='get-question'>
+            <button onClick={()=>{this.getQuestion()}}>Get Random Question</button>
+            </div>
+            </>
+          }
+          </>
+
         }
-
-
-
       </div>
     )
   }
