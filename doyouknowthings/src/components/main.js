@@ -94,7 +94,7 @@ class Main extends React.Component{
               'Content-Type': 'application/json'
           }
       }).then(response => {
-          console.log('deleted!');
+          this.getScoreboard();
       }).catch(error => console.log(error))
   }
 
@@ -152,7 +152,8 @@ class Main extends React.Component{
               (this.props.view === 'scoreboard') ?
               <Scoreboard
                 scoreboard={this.state.scoreboard}
-                handleDelete={this.handleDelete} />
+                handleDelete={this.handleDelete}
+                />
               :
               <div className='display-none'>
               <Scoreboard />
