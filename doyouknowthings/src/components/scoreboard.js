@@ -6,13 +6,20 @@ class Scoreboard extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-
+            admin:false
         }
     }
 
-//had to move the getScoreboard and db connection to main so I can pass the scoreboard also to question.js to validate if the name is there or nah
+    toggleAdminMode = () => {
+        this.setState({
+            admin: !this.state.admin
+        })
+    }
+
+// had to move the getScoreboard and db connection to main so I can pass the scoreboard also to question.js to validate if the name is there or nah
 
     render(){
+        console.log(this.state);
         return(
             <div className='scoreboard-component'>
                 <div className='scoreboard'>
@@ -28,7 +35,6 @@ class Scoreboard extends React.Component{
                 </thead>
                 <tbody>
                 {
-                    // we don't actually need this ternary operator -- just the map. The scoreboard always exists even if empty
                     (this.props.scoreboard) ?
                     this.props.scoreboard.map((score) => {
                         return(
@@ -46,6 +52,14 @@ class Scoreboard extends React.Component{
                 }
                 </tbody>
                 </table>
+                {
+                    (this.state.admin === false) ?
+                        <button onClick={()=>this.toggleAdminMode()}>Admin Mode</button>
+                    : <button onClick={()=>this.toggleAdminMode()}>Player Mode</button>
+                }
+
+
+
                 </div>
             </div>
         )
