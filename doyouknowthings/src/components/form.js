@@ -15,7 +15,7 @@ class Form extends React.Component{
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.getPlayerName(this.state.name)
+    this.props.startNewGame(this.state.name)
   }
 
   render(){

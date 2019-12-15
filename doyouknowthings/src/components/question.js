@@ -1,12 +1,13 @@
 import React from 'react'
-import GameScore from './GameScore.js'
 
 class Question extends React.Component{
   constructor(props){
     super(props)
     this.state = {
       currentScore: 0,
-      answerMsg: null
+      answerMsg: null,
+      gameOver: false,
+      correctAnswerCount: 0
     }
   }
 
@@ -56,7 +57,8 @@ class Question extends React.Component{
     if(answer === this.state.correctAnswer){
       this.setState({
         currentScore: this.state.currentScore + this.answerPoints(),
-        answerMsg: 'Correct answer!'
+        answerMsg: 'Correct answer!',
+        correctAnswerCount: this.state.correctAnswerCount + 1
       })
     } else {
       this.setState({
@@ -64,16 +66,33 @@ class Question extends React.Component{
       })
     }
 
-    setTimeout(this.getQuestion, 3000)
+    setTimeout(this.getQuestion, 2000)
   }
 
+  endGame = () => {
+    this.setState({
+      gameOver: true,
+      questionInfo: null
+    })
+  }
 
   render(){
     return(
       <div className='question-component'>
-        <GameScore currentScore={this.state.currentScore}/>
+        {
+          this.state.gameOver
+          ? <>
+          <h1>You've answered {this.state.correctAnswerCount} questions correctly and got {this.state.currentScore} points!</h1>
+          <button onClick={()=>this.props.startNewGame(null)}>start new game?</button>
+          </>
 
-        <button onClick={()=>{this.getQuestion()}}>Get Random Question</button>
+          :<>
+          <h1>SCORE {this.state.currentScore}</h1>
+
+          <button onClick={()=>{this.getQuestion()}}>Get Random Question</button>
+          </>
+        }
+
         {
           this.state.questionInfo ?
           <div>
@@ -98,10 +117,13 @@ class Question extends React.Component{
               ? <h1>{this.state.answerMsg}</h1>
               : null
             }
+          <button onClick={this.endGame}>end game</button>
 
           </div>
           : null
         }
+
+
 
       </div>
     )

@@ -7,11 +7,11 @@ class Main extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      playerName: null
+      playerName: null,
     }
   }
 
-  getPlayerName = (formData) => {
+  startNewGame = (formData) => {
     this.setState({
       playerName: formData
     })
@@ -23,11 +23,11 @@ class Main extends React.Component{
         {
           this.state.playerName
           ? <> <h1>Player - {this.state.playerName}</h1>
-          <Question playerName={this.state.playerName}/>
+          <Question playerName={this.state.playerName} startNewGame={this.startNewGame}/>
           </>
 
           :
-          <Form getPlayerName={this.getPlayerName}/>
+          <Form startNewGame={this.startNewGame}/>
         }
 
         <Scoreboard />
