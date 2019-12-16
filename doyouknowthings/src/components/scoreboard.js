@@ -36,7 +36,7 @@ class Scoreboard extends React.Component{
                         {score.name}
                         </td>
                         <td className='scoreboard-score'>
-                        {score.score}
+                        {score.score} points
                         </td>
                         {
                             (this.state.admin === true) ?
