@@ -6,7 +6,7 @@ class Header extends React.Component{
         console.log(this.props);
         return(
             <div className='header-component'>
-                <h1>Do you Know Things?</h1>
+                <h1>Do You Know Things?</h1>
                 <nav>
                     <div onClick={()=> this.props.handleView('game')}>GAME</div>
                     <div onClick={()=> this.props.handleView('scoreboard')}>SCOREBOARD</div>
