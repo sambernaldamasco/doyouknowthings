@@ -41,6 +41,47 @@ class Question extends React.Component{
     }).catch(error => console.log(error))
   }
 
+  replaceText = (string) => {
+    const regexp1 = /&quot;/
+    const regexp2= /&#039;/
+    const array = string.split(' ');
+    const firstArray = []
+    const secondArray= []
+    const thirdArray = []
+
+    for(let i = 0; i < array.length; i++){
+        if(array[i].match(regexp1)){
+            firstArray.push(array[i].replace(regexp1, '"'));
+
+        } else if (array[i].match(regexp2)) {
+            firstArray.push(array[i].replace(regexp2, "'"));
+        } else {
+            firstArray.push(array[i]);
+        }
+    }
+
+    for(let i = 0; i < firstArray.length; i++){
+        if(firstArray[i].match(regexp1)){
+            secondArray.push(firstArray[i].replace(regexp1, '"'));
+        } else if (firstArray[i].match(regexp2)){
+            secondArray.push(firstArray[i].replace(regexp2, "'"));
+        } else {
+            secondArray.push(firstArray[i]);
+        }
+    }
+
+    for(let i = 0; i < secondArray.length; i++){
+        if(secondArray[i].match(regexp1)){
+            thirdArray.push(secondArray[i].replace(regexp1, '"'));
+        } else if (secondArray[i].match(regexp2)){
+            thirdArray.push(secondArray[i].replace(regexp2, "'"));
+        } else {
+            thirdArray.push(secondArray[i]);
+        }
+    }
+    return thirdArray.join(' ')
+}
+
 // answerPoints ==============
 // summary: based on the question difficulty, it determines how many points the user will get when answering correctly
   answerPoints = () => {
@@ -141,12 +182,15 @@ class Question extends React.Component{
 
             <div className='question-div'>
             <div className='key'>Question: </div>
-            <p>{this.state.questionInfo.question}</p>
+            <p>
+            {this.replaceText(this.state.questionInfo.question)}
+
+            </p>
             </div>
 
                 <div className='category-div'>
                     <div className='key'>Category: </div>
-                    <p>{this.state.questionInfo.category}</p>
+                    <p>{this.replaceText(this.state.questionInfo.category)}</p>
                 </div>
                 <div className='difficulty-div'>
                     <div className='key'>Difficulty: </div>
@@ -170,9 +214,8 @@ class Question extends React.Component{
 
                     <button onClick={()=>this.checkAnswer(option)} key={index}
                     >
-                    {option}
+                    {this.replaceText(option)}
                     </button>
-
               )}
             )}
             </div>
