@@ -17,7 +17,7 @@ let baseURL = '';
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:8888'
 } else {
-  baseURL = 'https://doyouknowthings-api.herokuapp.com/api/scoreboard'
+  baseURL = 'https://doyouknowthings-api.herokuapp.com/api'
 }
 
 
