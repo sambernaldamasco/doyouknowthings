@@ -1,0 +1,219 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+/* Root =============== */
+:root {
+    /* colors */
+    --charcoal: #364958;
+    --blue: #7392B7;
+    --teal: #759EB8;
+    --columbia-blue: #C5D5EA;
+    --light-steel-blue: #B3C5D7;
+    --white: #D8E1E9;
+
+}
+
+/* GLOBAL =============== */
+body {
+    background: var(--blue);
+    color: var(--white);
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 10px;
+}
+
+.display-none {
+    display: none;
+}
+
+button {
+    border: 1px solid var(--white);
+    border-radius: 3px;
+    padding: 5px;
+    min-width: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+    background: var(--white);
+}
+
+button:hover {
+    background: var(--columbia-blue);
+}
+
+input {
+    border: 1px solid black;
+    border-radius: 3px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 5px;
+}
+
+.center {
+    text-align: center;
+}
+
+/* HEADER =============== */
+.header-component {
+    text-align: center;
+}
+
+.header-component > h1 {
+    padding-top: 10px;
+    color: var(--charcoal);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+nav > div {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+nav > div:hover {
+    cursor: pointer;
+}
+
+/* SCOREBOARD =============== */
+.scoreboard-component {
+    position: absolute;
+    top: 130px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+.scoreboard {
+    max-width: 800px;
+    margin: auto;
+    padding: 10px;
+    background: var(--blue);
+    height: 550px;
+}
+
+table {
+    width: 400px;
+    margin: auto;
+    text-align: center;
+    border: 5px solid var(--light-steel-blue);
+    border-radius: 10px;
+}
+
+tr {
+    height: 50px;
+    text-align: center;
+}
+
+td {
+    width: 50px;
+    border: 1px solid var(--light-steel-blue);
+    text-transform: capitalize;
+}
+
+.table-head{
+    width: 400px;
+    margin: auto;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 2;
+    color: var(--charcoal);
+}
+
+/* FORM =============== */
+.start-form-component {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* MAIN =============== */
+.player-name {
+    font-size: 20px;
+    text-align: left;
+    padding-left: 10px;
+    text-transform: capitalize;
+    color: var(--charcoal);
+}
+
+/* QUESTION ============ */
+.question-component {
+    border: 5px solid var(--columbia-blue);
+    border-radius: 10px;
+    min-height: 300px;
+}
+
+.score {
+    font-size: 20px;
+    margin-top: 0px;
+    text-align: right;
+    color: var(--charcoal);
+}
+
+.get-question {
+    text-align: center;
+}
+
+.data {
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.difficulty-div {
+    text-transform: capitalize;
+    margin-top:0;
+}
+
+.key {
+    color: var(--charcoal);
+    font-weight: bold;
+    text-transform: uppercase;
+    background: var(--light-steel-blue);
+    border-radius: 5px;
+    line-height: 1.5;
+    width: 100%;
+    text-align: center;
+}
+
+.answers {
+    text-align: center;
+    line-height: 2;
+}
+
+.answers-key {
+    color: var(--charcoal);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.answers > button {
+    margin-top: 20px;
+}
+
+.end-game {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.end-game-message {
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+}
