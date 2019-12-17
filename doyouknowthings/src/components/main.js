@@ -16,7 +16,7 @@ let baseURL = '';
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:8888'
 } else {
-  console.log('this is for heroku');
+  baseURL = 'https://doyouknowthings-api.herokuapp.com/api/scoreboard'
 }
 
 
