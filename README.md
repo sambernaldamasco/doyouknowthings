@@ -2,7 +2,7 @@
 ### Full-stack application for a trivia game
 
 Live site:
-#### <<tbd>>
+#### http://doyouknowthings.herokuapp.com
 ---
 
 ## Built with:
